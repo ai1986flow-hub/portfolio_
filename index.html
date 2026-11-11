@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Suju S — Creative Developer & 3D Experience Builder</title>
+  <!-- REPLACE: meta description with your own one-liner -->
+  <meta name="description" content="Portfolio of Suju S — interactive 3D web atlases, Unreal Engine tools and 3ds Max plugins." />
+  <meta name="theme-color" content="#050505" />
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml" />
+
+  <!-- Fonts: Syne (display), Inter (body), JetBrains Mono (labels). Fallbacks are set in style.css. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="is-loading">
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ============ LOADER ============ -->
+  <div class="loader" id="loader" aria-hidden="true">
+    <div class="loader__inner">
+      <div class="loader__logo">SS</div>
+      <div class="loader__bar"><span id="loaderBar"></span></div>
+      <div class="loader__count mono"><span id="loaderCount">0</span>%</div>
+    </div>
+  </div>
+
+  <!-- ============ AMBIENT LAYERS ============ -->
+  <canvas id="bgCanvas" class="bg-canvas" aria-hidden="true"></canvas>
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="spotlight" id="spotlight" aria-hidden="true"></div>
+  <div class="cursor" id="cursor" aria-hidden="true"><span class="cursor__dot"></span><span class="cursor__ring"></span></div>
+
+  <!-- ============ NAVIGATION ============ -->
+  <header class="nav" id="nav">
+    <div class="nav__inner container">
+      <a href="#home" class="nav__logo" aria-label="Suju S — back to top">
+        <span class="nav__mark">SS</span>
+        <span class="nav__name">Suju<span class="accent">.</span>S</span>
+      </a>
+
+      <nav class="nav__menu" id="navMenu" aria-label="Primary">
+        <ul class="nav__list">
+          <li><a href="#home" class="nav__link is-active">Home</a></li>
+          <li><a href="#projects" class="nav__link">Projects</a></li>
+          <li><a href="#contact" class="nav__link">Contact</a></li>
+        </ul>
+        <a href="#contact" class="btn btn--small btn--ghost nav__cta magnetic">Let's Talk</a>
+      </nav>
+
+      <button class="nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navMenu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="home" aria-label="Introduction">
+      <div class="hero__shapes" aria-hidden="true">
+        <span class="shape shape--ring" data-depth="0.6"></span>
+        <span class="shape shape--tri" data-depth="1.2"></span>
+        <span class="shape shape--cube" data-depth="0.9"></span>
+        <span class="shape shape--dot" data-depth="1.6"></span>
+        <span class="shape shape--plus" data-depth="0.4"></span>
+      </div>
+
+      <!-- Hero background: figure on a summit above the clouds at dawn -->
+      <div class="hero__bg" id="heroBg" aria-hidden="true">
+        <img src="assets/images/hero-summit.jpg" alt="" width="2400" height="800" fetchpriority="high" />
+      </div>
+      <div class="hero__shade" aria-hidden="true"></div>
+      <div class="hero__glints" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+
+      <!-- Black-hole eclipse glow (hidden in the Dubai theme) -->
+      <div class="hero__eclipse" id="eclipse" aria-hidden="true">
+        <span class="eclipse__halo"></span>
+        <span class="eclipse__disk"></span>
+        <span class="eclipse__ring"></span>
+        <span class="eclipse__core"></span>
+      </div>
+
+      <div class="container hero__layout">
+      <div class="hero__content">
+        <p class="eyebrow reveal">
+          <svg class="eyebrow__spark" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8zM19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg>
+          Creative Developer Portfolio · Available 2026
+        </p>
+
+        <h1 class="hero__title">
+          <span class="line"><span class="line__inner">Hello, I'm</span></span>
+          <span class="line"><span class="line__inner hero__name" data-config="name">Suju S</span></span>
+        </h1>
+
+        <p class="hero__role mono">
+          <span class="hero__role-prefix">&gt;</span>
+          <span id="typed" aria-hidden="true"></span><span class="caret" aria-hidden="true"></span>
+          <span class="sr-only" id="typedSr">Creative Developer and 3D Experience Builder</span>
+        </p>
+
+        <!-- REPLACE: short bio (also editable in SITE_CONFIG in script.js) -->
+        <p class="hero__bio reveal" data-config="bio">
+          I build interactive 3D atlases, cinematic Unreal Engine tools and production plugins
+          that turn maps, CAD drawings and local history into experiences people can explore.
+        </p>
+
+        <div class="hero__ctas reveal">
+          <a href="#projects" class="btn btn--primary magnetic"><span>Explore My Work</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a href="#contact" class="btn btn--ghost magnetic"><span>Let's Talk</span></a>
+        </div>
+
+        <ul class="hero__meta reveal" aria-label="Focus areas">
+          <li><span class="mono">01</span> Three.js &amp; WebGL</li>
+          <li><span class="mono">02</span> Unreal Engine 5</li>
+          <li><span class="mono">03</span> 3ds Max &amp; AutoCAD tools</li>
+        </ul>
+      </div>
+
+      <!-- Orbiting tool ring. Click a tile to see the projects built with that tool. -->
+      <div class="hero__orbit reveal" id="orbit">
+        <svg class="orbit__rings" viewBox="0 0 560 560" aria-hidden="true">
+          <circle cx="280" cy="280" r="108"/><circle cx="280" cy="280" r="188"/><circle cx="280" cy="280" r="262"/>
+          <line x1="280" y1="0" x2="280" y2="560"/><line x1="0" y1="280" x2="560" y2="280"/>
+          <line x1="82" y1="82" x2="478" y2="478"/><line x1="478" y1="82" x2="82" y2="478"/>
+        </svg>
+        <div class="orbit__center" aria-hidden="true">SS</div>
+        <ul class="orbit__tiles" id="orbitTiles" aria-label="Tools I work with — select one to see matching projects"></ul>
+        <span class="orbit__tip mono" id="orbitTip" aria-hidden="true"></span>
+      </div>
+      </div>
+
+      <a href="#projects" class="scroll-indicator" aria-label="Scroll to Projects">
+        <span class="scroll-indicator__mouse"><span></span></span>
+        <span class="mono">Scroll</span>
+      </a>
+    </section>
+
+    <!-- ============ PROJECTS ============ -->
+    <section class="section projects" id="projects" aria-labelledby="projectsTitle">
+      <div class="container">
+        <header class="section__head reveal">
+          <span class="section__index mono">// 01</span>
+          <h2 class="section__title" id="projectsTitle">Selected <span class="gradient-text">work</span></h2>
+          <p class="section__sub">Interactive 3D explorations of Dubai and Kerala.</p>
+        </header>
+
+        <div class="filters reveal" role="group" aria-label="Filter projects">
+          <button class="filter is-active" data-filter="all" aria-pressed="true">All Projects</button>
+          <button class="filter" data-filter="web" aria-pressed="false">Web Design</button>
+          <button class="filter" data-filter="dev" aria-pressed="false">Development</button>
+          <button class="filter" data-filter="uiux" aria-pressed="false">UI/UX</button>
+          <button class="filter" data-filter="creative" aria-pressed="false">Creative Projects</button>
+        </div>
+        <p class="filters__status sr-only" id="filterStatus" aria-live="polite"></p>
+
+        <!--
+          Each card: data-category = space-separated list of web | dev | uiux | creative
+          data-demo / data-source = links. Leave empty "" and the button shows a
+          "link not added yet" notice instead of going nowhere.
+          REPLACE: add your real Live Demo and Source Code URLs.
+        -->
+        <div class="projects__stage">
+        <svg class="constellation" id="constellation" aria-hidden="true"></svg>
+        <div class="projects__grid" id="projectsGrid">
+
+          <article class="project tilt" data-category="web dev creative" data-demo="projects/dubai/index.html" data-source="">
+            <div class="project__bar"><span class="project__bar-title mono">Interactive 3D · Web</span><span class="project__dots" aria-hidden="true"><i></i><i></i><i></i></span></div>
+            <div class="project__media"><img src="assets/images/project-dubai.jpg" alt="Aerial night view of Downtown Dubai with the Burj Khalifa, Dubai Fountain, Palm Jumeirah and Burj Al Arab" style="object-position:72% 50%" loading="lazy" width="800" height="500" /></div>
+            <div class="project__body">
+              <h3 class="project__title">Dubai City Explore</h3>
+              <p class="project__desc">An explorable 3D city portfolio in the browser — fly between districts, landmarks and info panels built on a real-scale model.</p>
+              <ul class="tags"><li>Three.js</li><li>WebGL</li><li>JavaScript</li><li>3D Modeling</li></ul>
+              <div class="project__actions">
+                <a href="#" class="btn btn--small btn--primary" data-action="demo">Live Demo</a>
+                <a href="#" class="btn btn--small btn--ghost" data-action="source">Source Code</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project tilt" data-category="web dev creative" data-demo="projects/dams/index.html" data-source="">
+            <div class="project__bar"><span class="project__bar-title mono">WebGL · VR/AR</span><span class="project__dots" aria-hidden="true"><i></i><i></i><i></i></span></div>
+            <div class="project__media"><img src="assets/images/project-dams.jpg" alt="A Kerala dam releasing water through its spillway gates, with a reservoir and forested hills behind" style="object-position:62% 55%" loading="lazy" width="800" height="500" /></div>
+            <div class="project__body">
+              <h3 class="project__title">Kerala Dams Explore</h3>
+              <p class="project__desc">Explore Kerala's dams in interactive 3D with VR/AR viewing, a Windows build and a companion YouTube tutorial.</p>
+              <ul class="tags"><li>Three.js</li><li>WebXR</li><li>Data Viz</li></ul>
+              <div class="project__actions">
+                <a href="#" class="btn btn--small btn--primary" data-action="demo">Live Demo</a>
+                <a href="#" class="btn btn--small btn--ghost" data-action="source">Source Code</a>
+                <a href="https://www.youtube.com/@suju198" class="btn btn--small btn--yt" data-view="YouTube · Suju S" data-embed="https://www.youtube-nocookie.com/embed/videoseries?list=UUNd0vbqFH0497tbEEwDObgA&rel=0&modestbranding=1" aria-label="Watch Suju S videos on YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22.5 6.4a2.8 2.8 0 00-2-2C18.9 4 12 4 12 4s-6.9 0-8.6.4a2.8 2.8 0 00-1.9 2A29 29 0 001 12a29 29 0 00.5 5.6 2.8 2.8 0 002 2c1.7.4 8.5.4 8.5.4s6.9 0 8.6-.4a2.8 2.8 0 001.9-2A29 29 0 0023 12a29 29 0 00-.5-5.6z"/><path d="M9.8 15.5l5.7-3.5-5.7-3.5z"/></svg><span>YouTube</span></a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project tilt" data-category="web uiux creative" data-demo="projects/murukkumpuzha/index.html" data-source="">
+            <div class="project__bar"><span class="project__bar-title mono">Heritage · Storytelling</span><span class="project__dots" aria-hidden="true"><i></i><i></i><i></i></span></div>
+            <div class="project__media"><img src="assets/images/project-murukkumpuzha.jpg" alt="Aerial view of Murukkumpuzha: a red-roofed boat jetty on the backwater, mangroves, fish ponds and the village beyond" style="object-position:45% 55%" loading="lazy" width="800" height="500" /></div>
+            <div class="project__body">
+              <h3 class="project__title">Murukkumpuzha Heritage Explore</h3>
+              <p class="project__desc">Explore a Thiruvananthapuram heritage village in 3D: story chapters, timeline, video and Malayalam narration.</p>
+              <ul class="tags"><li>Three.js</li><li>Bilingual UI</li><li>Audio</li></ul>
+              <div class="project__actions">
+                <a href="#" class="btn btn--small btn--primary" data-action="demo">Live Demo</a>
+                <a href="#" class="btn btn--small btn--ghost" data-action="source">Source Code</a>
+              </div>
+            </div>
+          </article>
+          <article class="project tilt" data-category="dev uiux" data-demo="projects/ltest/index.html" data-source="">
+            <div class="project__bar"><span class="project__bar-title mono">Learning App · Game</span><span class="project__dots" aria-hidden="true"><i></i><i></i><i></i></span></div>
+            <div class="project__media"><img src="assets/images/project-ltest.jpg" alt="3D driving game: a blue car at a junction with traffic lights and a compulsory-ahead sign" style="object-position:50% 45%" loading="lazy" width="800" height="500" /></div>
+            <div class="project__body">
+              <h3 class="project__title">Kerala L-Test Prep</h3>
+              <p class="project__desc">Learner's licence prep with road signs, Q&amp;A, a timed mock test and a 3D driving mini-game.</p>
+              <ul class="tags"><li>JavaScript</li><li>Three.js</li><li>Quiz Engine</li></ul>
+              <div class="project__actions">
+                <a href="#" class="btn btn--small btn--primary" data-action="demo">Live Demo</a>
+                <a href="#" class="btn btn--small btn--ghost" data-action="source">Source Code</a>
+              </div>
+            </div>
+          </article>
+
+
+
+
+
+
+        </div>
+        </div>
+
+        <p class="projects__empty" id="projectsEmpty" hidden>No projects in this category yet.</p>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT (HUD panel) ============ -->
+    <section class="section contact" id="contact" aria-labelledby="contactTitle">
+      <div class="container">
+        <div class="hud reveal">
+          <!-- Decorative frame pieces -->
+          <span class="hud__bar hud__bar--top" aria-hidden="true"></span>
+          <span class="hud__bar hud__bar--bottom" aria-hidden="true"></span>
+          <span class="hud__ticks hud__ticks--left" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+          <span class="hud__ticks hud__ticks--right" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+
+          <header class="hud__head">
+            <span class="section__index mono">// 02 · open channel</span>
+            <h2 class="hud__title" id="contactTitle" data-text="CONTACT">CONTACT</h2>
+            <p class="contact__lead">Have a 3D experience, plugin or website in mind? Tell me about it — I usually reply within two days.</p>
+          </header>
+
+          <div class="hud__grid">
+            <form class="hud__panel contact__form" id="contactForm" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+              <!-- Netlify Forms: these two fields let Netlify receive the message and email it to you -->
+              <input type="hidden" name="form-name" value="contact" />
+              <p class="sr-only" aria-hidden="true"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
+              <span class="bracket bracket--tl" aria-hidden="true"></span>
+              <span class="bracket bracket--br" aria-hidden="true"></span>
+
+              <div class="field">
+                <input type="text" id="name" name="name" placeholder=" " autocomplete="name" required minlength="2" aria-describedby="nameError" />
+                <label for="name">Name</label>
+                <span class="field__error" id="nameError" aria-live="polite"></span>
+              </div>
+              <div class="field">
+                <input type="email" id="email" name="email" placeholder=" " autocomplete="email" required aria-describedby="emailError" />
+                <label for="email">Email</label>
+                <span class="field__error" id="emailError" aria-live="polite"></span>
+              </div>
+              <div class="field">
+                <input type="text" id="subject" name="subject" placeholder=" " required minlength="3" aria-describedby="subjectError" />
+                <label for="subject">Subject</label>
+                <span class="field__error" id="subjectError" aria-live="polite"></span>
+              </div>
+              <div class="field">
+                <textarea id="message" name="message" rows="5" placeholder=" " required minlength="20" maxlength="2000" aria-describedby="messageError messageCount"></textarea>
+                <label for="message">Message</label>
+                <span class="field__count mono" id="messageCount">0 / 2000</span>
+                <span class="field__error" id="messageError" aria-live="polite"></span>
+              </div>
+
+              <!-- Circular HUD submit button with rotating rings -->
+              <button type="submit" class="btn--submit" id="submitBtn">
+                <svg class="submit__rings" viewBox="0 0 120 120" aria-hidden="true">
+                  <circle class="submit__ring submit__ring--a" cx="60" cy="60" r="56"/>
+                  <circle class="submit__ring submit__ring--b" cx="60" cy="60" r="47"/>
+                </svg>
+                <span class="btn__label">SEND</span>
+              </button>
+
+              <!--
+                No backend is connected, so this form does NOT send anything by itself.
+                On valid submit it opens the visitor's email app with the message pre-filled
+                and offers a Copy button. To send directly, connect a service such as
+                Formspree or EmailJS (see FORM_ENDPOINT in script.js).
+              -->
+              <p class="form__note" id="formNote">Messages go straight to my inbox.</p>
+              <div class="form__result" id="formResult" role="status" aria-live="polite" hidden></div>
+            </form>
+
+            <div class="hud__side">
+              <figure class="hud__map">
+                <img src="assets/images/world-dots.svg" alt="Dotted world map" width="720" height="284" loading="lazy" />
+                <span class="hud__scan" aria-hidden="true"></span>
+                <!-- Pins: left/top are percentages on the equirectangular map (lon -180..180, lat 84..-58) -->
+                <button type="button" class="pin" style="left:65.4%;top:41.4%" data-match="Dubai City Explore" data-label="Dubai · 1 project">
+                  <span class="sr-only">Dubai — show the Dubai City Explore project</span>
+                </button>
+                <button type="button" class="pin" style="left:59.7%;top:53.2%" data-match="Kerala Dams Explore|Murukkumpuzha Heritage Explore|Kerala L-Test Prep" data-label="Kerala · 3 projects">
+                  <span class="sr-only">Kerala — show the 3 Kerala projects</span>
+                </button>
+                <figcaption class="hud__map-cap mono">Project sites · select a pin</figcaption>
+              </figure>
+
+              <div class="hud__strip">
+                <div class="hud__emblem" aria-hidden="true"><span>SS</span></div>
+                <div class="hud__info">
+                  <span class="contact__label mono">Email</span>
+                  <a href="mailto:suju198@gmail.com" class="contact__value" data-config-email>suju198@gmail.com</a>
+                </div>
+                <button type="button" class="copy-btn" id="copyEmail" aria-label="Copy email address">Copy</button>
+              </div>
+
+              <div class="hud__foot">
+                <span class="mono hud__loc"><span class="pulse-dot"></span> <span data-config="location">Remote · Worldwide</span></span>
+                <div class="socials" aria-label="Social links">
+                  <a href="#" class="social magnetic" data-link="github" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="M9 19c-4 1.5-4-2-6-2.5m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 00-1.3-3.2 4.2 4.2 0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 00-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 00-.1 3.2A4.6 4.6 0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a>
+                  <a href="#" class="social magnetic" data-link="linkedin" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+                  <a href="https://www.youtube.com/@suju198" class="social magnetic" data-view="YouTube · Suju S" data-embed="https://www.youtube-nocookie.com/embed/videoseries?list=UUNd0vbqFH0497tbEEwDObgA&rel=0&modestbranding=1" aria-label="YouTube videos"><svg viewBox="0 0 24 24"><path d="M22.5 6.4a2.8 2.8 0 00-2-2C18.9 4 12 4 12 4s-6.9 0-8.6.4a2.8 2.8 0 00-1.9 2A29 29 0 001 12a29 29 0 00.5 5.6 2.8 2.8 0 002 2c1.7.4 8.5.4 8.5.4s6.9 0 8.6-.4a2.8 2.8 0 001.9-2A29 29 0 0023 12a29 29 0 00-.5-5.6z"/><path d="M9.8 15.5l5.7-3.5-5.7-3.5z"/></svg></a>
+                  <a href="mailto:suju198@gmail.com" class="social magnetic" data-config-email aria-label="Email"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></svg></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p>© <span id="year">2026</span> <span data-config="name">Suju S</span>. Designed &amp; built by hand.</p>
+      <ul class="footer__links">
+        <li><a href="#projects">Work</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="https://www.youtube.com/@suju198" data-view="YouTube · Suju S" data-embed="https://www.youtube-nocookie.com/embed/videoseries?list=UUNd0vbqFH0497tbEEwDObgA&rel=0&modestbranding=1">YouTube</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <button class="to-top" id="toTop" aria-label="Back to top" hidden>
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+  </button>
+
+
+  <!-- ============ PROJECT VIEWER (opens projects inside this page) ============ -->
+  <div class="viewer" id="viewer" role="dialog" aria-modal="true" aria-labelledby="viewerTitle" hidden>
+    <div class="viewer__bar">
+      <span class="viewer__led" aria-hidden="true"></span>
+      <h2 class="viewer__title mono" id="viewerTitle">Project</h2>
+      <div class="viewer__actions">
+        <button type="button" class="viewer__btn" id="viewerReload" aria-label="Reload project">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8 8 0 10-2.3 5.7M20 4v7h-7"/></svg><span>Reload</span></button>
+        <button type="button" class="viewer__btn" id="viewerFull" aria-label="Full screen">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg><span>Full screen</span></button>
+        <button type="button" class="viewer__btn viewer__btn--exit" id="viewerExit" aria-label="Exit project and return to portfolio">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg><span>Exit</span></button>
+      </div>
+    </div>
+    <div class="viewer__stage">
+      <div class="viewer__loading" id="viewerLoading"><span class="viewer__spinner"></span><span class="mono">Loading project…</span></div>
+      <div class="viewer__blocked" id="viewerBlocked" hidden>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22.5 6.4a2.8 2.8 0 00-2-2C18.9 4 12 4 12 4s-6.9 0-8.6.4a2.8 2.8 0 00-1.9 2A29 29 0 001 12a29 29 0 00.5 5.6 2.8 2.8 0 002 2c1.7.4 8.5.4 8.5.4s6.9 0 8.6-.4a2.8 2.8 0 001.9-2A29 29 0 0023 12a29 29 0 00-.5-5.6z"/><path d="M9.8 15.5l5.7-3.5-5.7-3.5z"/></svg>
+        <p class="viewer__blocked-title">This preview can't play YouTube inside the page</p>
+        <p class="viewer__blocked-text">On your own published website the videos play right here. For now, open the channel on YouTube.</p>
+        <a class="btn btn--primary" id="viewerBlockedLink" href="#" target="_blank" rel="noopener"><span>Watch on YouTube</span></a>
+      </div>
+      <iframe id="viewerFrame" title="Project" allow="fullscreen; autoplay; encrypted-media; picture-in-picture; xr-spatial-tracking; accelerometer; gyroscope" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
